@@ -1,0 +1,13 @@
+*.iml
+*.jar
+.g8
+.gradle
+.idea
+build
+logs
+gradle
+target
+project
+build.gradle
+gradlew
+gradlew.bat
