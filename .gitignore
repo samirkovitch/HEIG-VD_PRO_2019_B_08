@@ -1,3 +1,16 @@
+
+
+# pour eclipse ->
+.metadata
+.settings
+.cache-main
+.cache-tests
+.classpath
+.project
+bin 			# pas sur ...
+
+# <- pour eclipse 
+
 *.iml
 *.jar
 .g8
