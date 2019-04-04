@@ -19,7 +19,6 @@ bin 			# pas sur ...
 build
 logs
 gradle
-target
 project
 build.gradle
 gradlew
