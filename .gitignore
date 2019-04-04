@@ -18,6 +18,7 @@ bin 			# pas sur ...
 .idea
 build
 logs
+target
 gradle
 project
 build.gradle
