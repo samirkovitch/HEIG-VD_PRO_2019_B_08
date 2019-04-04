@@ -1,0 +1,4 @@
+[debug] Copy resource mappings: 
+[debug] 	(D:\TIC\HEIG\S4\PRO\pro_play_java\conf\application.conf,D:\TIC\HEIG\S4\PRO\pro_play_java\target\scala-2.12\classes\application.conf)
+[debug] 	(D:\TIC\HEIG\S4\PRO\pro_play_java\conf\logback.xml,D:\TIC\HEIG\S4\PRO\pro_play_java\target\scala-2.12\classes\logback.xml)
+[debug] 	(D:\TIC\HEIG\S4\PRO\pro_play_java\conf\routes,D:\TIC\HEIG\S4\PRO\pro_play_java\target\scala-2.12\classes\routes)
