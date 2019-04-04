@@ -44,7 +44,7 @@ public class HomeController extends Controller {
     public Result Profil() {
 
         // Get user_id
-        Utilisateur user = DB.UtilisateurByID( 3 );
+        Utilisateur user = DB.UtilisateurByID( 2 );
 
         return ok( views.html.utilisateur.render( user) );
     }
