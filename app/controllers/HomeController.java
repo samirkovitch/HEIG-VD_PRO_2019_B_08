@@ -35,13 +35,21 @@ public class HomeController extends Controller {
     }
 
     public Result test() {
+
+        // Insert une sous categorie
+
+        SousCategorie souscat = new SousCategorie("test", DB.CategorieByID(1));
+        if (!DB.insert_Sous_categorie(souscat))
+            System.out.println("nop");
+
+
         return ok(views.html.test.render());
     }
 
     public Result Profil() {
 
         // Get user_id
-        Utilisateur user = DB.UtilisateurByID( 2 );
+        Utilisateur user = DB.UtilisateurByID( 1 );
 
         return ok( views.html.utilisateur.render( user) );
     }
@@ -57,7 +65,7 @@ public class HomeController extends Controller {
    public Result sousCategorie() {
 
        ArrayList<SousCategorie> listSousCategorie = new ArrayList<SousCategorie>();
-       listSousCategorie = DB.display_Sous_categorie(1);
+       listSousCategorie = DB.get_Sous_categorie(1);
 
         return ok( views.html.sousCategorie.render( listSousCategorie) );
     }
