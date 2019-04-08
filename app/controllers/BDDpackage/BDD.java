@@ -340,7 +340,7 @@ public class BDD {
         try {
             String SQL = "SELECT * "
                     + "FROM " + table("Categorie")
-                    + "WHERE categoire_id = ?";
+                    + " WHERE categorie_id = ?";
 
             PreparedStatement pstmt = conn.prepareStatement(SQL);
 
@@ -370,7 +370,7 @@ public class BDD {
      * @param
      * @throws SQLException
      */
-    public ArrayList<SousCategorie> display_Sous_categorie(int categoire_id) {
+    public ArrayList<SousCategorie> get_Sous_categorie(int categoire_id) {
         
         ArrayList<SousCategorie> listSousCategorie = new ArrayList<>();
         
@@ -384,7 +384,6 @@ public class BDD {
                 Categorie categorie = CategorieByID(rs.getInt( "categorie_id" ));
                 SousCategorie sousCat = new SousCategorie(rs.getInt(1),rs.getString("nom"),categorie);
                 listSousCategorie.add(sousCat);
-                System.out.println("id : " + rs.getString(1)  + " nom : " + rs.getString(2));
             }
             
             rs.close();
@@ -404,7 +403,7 @@ public class BDD {
      */
     private boolean checkUniqueSousCategorie(String nom, int categorie_id){
         
-        ArrayList<SousCategorie> uniqueValues = display_Sous_categorie(categorie_id);
+        ArrayList<SousCategorie> uniqueValues = get_Sous_categorie(categorie_id);
 
         for(SousCategorie sousCat : uniqueValues){
             if (sousCat.nom == nom)
@@ -421,7 +420,8 @@ public class BDD {
      * @params ...
      * @throws 
      */
-    private boolean insert_Sous_categorie(String nom, int categorie_id){
+    /*
+    public boolean insert_Sous_categorie(String nom, int categorie_id){
         boolean ok = false;
         
         try {
@@ -445,6 +445,40 @@ public class BDD {
         }
         return ok;
     }
+*/
+
+
+    /**
+     * Permet d'insérer une nouvelle Sous_categorie à la BDD
+     *
+     * @params ...
+     * @throws
+     */
+    public boolean insert_Sous_categorie(SousCategorie sousCategorie){
+        boolean ok = false;
+
+        try {
+
+            int idCat = sousCategorie.categorie.id;
+            if ( !checkUniqueSousCategorie(sousCategorie.nom, idCat))
+                return ok;
+
+
+            String SQL = "INSERT INTO "
+                    + table("Sous_categorie")
+                    + "(nom, categorie_id) "
+                    + "VALUES "
+                    + "('" + sousCategorie.nom +"'," + sousCategorie.categorie.id + ");";
+
+            Statement st = conn.createStatement();
+            st.executeUpdate(SQL);
+            ok = true;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ok;
+    }
         
     /**
      * @param args the command line arguments
@@ -457,7 +491,7 @@ public class BDD {
         System.out.println("------------------Categorie------------------------------------------------");
         app.display_Categories();
         System.out.println("------------------Sous categorie------------------------------------------------");
-        app.display_Sous_categorie(4);
+        app.get_Sous_categorie(4);
         System.out.println("------------------Utilisateurs 1------------------------------------------------");
         app.UtilisateurByID(1);
         System.out.println("------------------Utilisateurs 2------------------------------------------------");
@@ -470,8 +504,12 @@ public class BDD {
             System.out.println("erreur !");
         
         System.out.println("------------------Insert Sous_categorie------------------------------------------------");
-        if (!app.insert_Sous_categorie( "new_cat",  1))
-            System.out.println("erreur !");
+        //if (!app.insert_Sous_categorie( "new_cat",  1))
+            //System.out.println("erreur !");
+
+        System.out.println("------------------Insert get categorie------------------------------------------------");
+        Categorie cat = app.CategorieByID( 1 );
+        System.out.println(cat.id);
         
 
 
