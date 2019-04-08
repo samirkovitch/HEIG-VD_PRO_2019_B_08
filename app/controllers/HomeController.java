@@ -31,8 +31,6 @@ public class HomeController extends Controller {
         //DB.display_Sous_categorie(2);
 
         //DB.UtilisateurByID(1);
-
-
         return ok(views.html.index.render("Timmy-kun"));
     }
 
@@ -43,8 +41,6 @@ public class HomeController extends Controller {
         SousCategorie souscat = new SousCategorie("test", DB.CategorieByID(1));
         if (!DB.insert_Sous_categorie(souscat))
             System.out.println("nop");
-
-
 
 
         return ok(views.html.test.render());
@@ -73,7 +69,4 @@ public class HomeController extends Controller {
 
         return ok( views.html.sousCategorie.render( listSousCategorie) );
     }
-
-
-
 }
