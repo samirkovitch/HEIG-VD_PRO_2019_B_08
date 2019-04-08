@@ -31,13 +31,10 @@ public class HomeController extends Controller {
         //DB.display_Sous_categorie(2);
 
         //DB.UtilisateurByID(1);
-
-
         return ok(views.html.index.render("Timmy-kun"));
     }
 
     public Result test() {
-
         return ok(views.html.test.render());
     }
 
@@ -64,7 +61,4 @@ public class HomeController extends Controller {
 
         return ok( views.html.sousCategorie.render( listSousCategorie) );
     }
-
-
-
 }
