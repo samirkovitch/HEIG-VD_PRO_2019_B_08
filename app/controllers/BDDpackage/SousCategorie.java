@@ -14,13 +14,17 @@ package controllers.BDDpackage;
 public class SousCategorie {
 
     public String nom;
-    public int id;
+    public Integer id = null;
     public Categorie categorie;
 
-    SousCategorie(int id, String nom, Categorie categorie){
+    SousCategorie(Integer id, String nom, Categorie categorie){
         this.id = id;
         this.nom = nom;
         this.categorie = categorie;
+    }
+
+    public SousCategorie(String nom, Categorie categorie){
+        this(null,nom,categorie);
     }
 
     SousCategorie(int id, String nom){
