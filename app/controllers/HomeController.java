@@ -38,9 +38,12 @@ public class HomeController extends Controller {
 
         // Insert une sous categorie
 
+        /*
         SousCategorie souscat = new SousCategorie("test", DB.CategorieByID(1));
         if (!DB.insert_Sous_categorie(souscat))
             System.out.println("nop");
+
+         */
 
 
         return ok(views.html.test.render());
