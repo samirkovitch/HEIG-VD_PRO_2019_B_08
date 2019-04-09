@@ -18,7 +18,7 @@ public class Limite {
     // public String nom;
     public int id;
     public String date;
-    public int valeur;
+    public double valeur;
     public Utilisateur user;
     public Recurrence recurrence ;
     public SousCategorie sousCategorie;
@@ -27,7 +27,7 @@ public class Limite {
 
     }
 
-    public Limite(String date, int valeur,Utilisateur user,Recurrence recurrence,SousCategorie sousCategorie ){
+    public Limite(String date, double valeur,Utilisateur user,Recurrence recurrence,SousCategorie sousCategorie ){
         this.date = date;
         this.valeur = valeur;
         this.user = user;

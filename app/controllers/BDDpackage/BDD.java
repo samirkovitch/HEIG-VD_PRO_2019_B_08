@@ -365,18 +365,18 @@ public class BDD {
 
 
     /**
-     * Display Sous_categorie
+     * Get Sous_categorie by
      *
      * @param
      * @throws SQLException
      */
-    public ArrayList<SousCategorie> get_Sous_categorie(int categoire_id) {
+    public ArrayList<SousCategorie> get_Sous_categorie(int categorie_id) {
         
         ArrayList<SousCategorie> listSousCategorie = new ArrayList<>();
         
         try {
             PreparedStatement st = conn.prepareStatement("SELECT * FROM " + table("Sous_categorie") + " WHERE categorie_id = ?");
-            st.setInt(1, categoire_id);
+            st.setInt(1, categorie_id);
             ResultSet rs = st.executeQuery();
             
             while (rs.next())
@@ -479,6 +479,34 @@ public class BDD {
         }
         return ok;
     }
+
+    /**
+     * Get Type de transaction in BD
+     *
+     * @param
+     * @throws SQLException
+     */
+    public ArrayList<String> get_Type_transaction() {
+
+        ArrayList<String> listType_transaction = new ArrayList<>();
+
+        try {
+            PreparedStatement st = conn.prepareStatement("SELECT * FROM " + table("Type_transaction"));
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next())
+            {
+                listType_transaction.add( rs.getString("type") );
+            }
+
+            rs.close();
+            st.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listType_transaction;
+    }
         
     /**
      * @param args the command line arguments
@@ -504,12 +532,14 @@ public class BDD {
             System.out.println("erreur !");
         
         System.out.println("------------------Insert Sous_categorie------------------------------------------------");
-        //if (!app.insert_Sous_categorie( "new_cat",  1))
-            //System.out.println("erreur !");
+
 
         System.out.println("------------------Insert get categorie------------------------------------------------");
         Categorie cat = app.CategorieByID( 1 );
         System.out.println(cat.id);
+
+        System.out.println("------------------Get Type_transaction------------------------------------------------");
+        System.out.println(app.get_Type_transaction());
         
 
 
