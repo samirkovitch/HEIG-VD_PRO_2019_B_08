@@ -36,19 +36,17 @@ public class HomeController extends Controller {
 
     public Result test() {
 
-        // Insert une sous categorie
-
-        /*
-        SousCategorie souscat = new SousCategorie("test", DB.CategorieByID(1));
-        if (!DB.insert_Sous_categorie(souscat))
-            System.out.println("nop");
-
-         */
-
-
         return ok(views.html.test.render());
     }
 
+    // Exemple pour passer un paramètre de HTML -> Java (via URL)
+    // Fichier à toucher : HomeController + routes + views
+    public Result testParam(String name) {
+
+        return ok(views.html.testParam.render(name));
+    }
+
+    // Exemple pour passer un paramètre de java -> HTML
     public Result Profil() {
 
         // Get user_id
@@ -56,7 +54,7 @@ public class HomeController extends Controller {
 
         return ok( views.html.utilisateur.render( user) );
     }
-
+    // Exemple pour passer un paramètre de java -> HTML
     public Result Categorie() {
 
         ArrayList<Categorie> listCategorie = new ArrayList<Categorie>();
@@ -64,7 +62,7 @@ public class HomeController extends Controller {
 
         return ok( views.html.Categorie.render( listCategorie) );
     }
-
+    // Exemple pour passer un paramètre de java -> HTML
    public Result sousCategorie() {
 
        ArrayList<SousCategorie> listSousCategorie = new ArrayList<SousCategorie>();

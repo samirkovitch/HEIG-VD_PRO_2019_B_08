@@ -5,6 +5,7 @@
 # An example controller showing a sample home page
 GET     /                               controllers.HomeController.index
 GET		/test						    controllers.HomeController.test
+GET		/testParam						controllers.HomeController.testParam(name: String)
 GET		/profil					        controllers.HomeController.Profil
 GET		/categorie				        controllers.HomeController.Categorie
 GET		/sousCategorie					controllers.HomeController.sousCategorie
