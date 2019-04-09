@@ -1,5 +1,7 @@
 package controllers.BDDpackage;
 
+
+// Pour afficher une Enum : java.util.Arrays.asList(Recurrence.values())
 public enum Recurrence {
     Annuel(1),
     Mensuel(2),
