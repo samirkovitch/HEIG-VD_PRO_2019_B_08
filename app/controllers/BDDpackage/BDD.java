@@ -196,17 +196,6 @@ public class BDD {
                         paysString(rs.getInt("pays_id")),
                         optionsString(rs.getInt("options_id")) );
 
-                System.out.println(rs.getString("utilisateur_id") + "\t"
-                        + rs.getString("prenom") + "\t"
-                        + rs.getString("nom") + "\t"
-                        + rs.getString("email") + "\t"
-                        + rs.getString("pseudo") + "\t"
-                        + genreString(rs.getString("genre")) + "\t"
-                        + rs.getString("anniversaire") + "\t"
-                        + statutString(rs.getInt("statut_id")) + "\t"
-                        + paysString(rs.getInt("pays_id"))  + "\t"
-                        + optionsString(rs.getInt("options_id"))       
-                ) ;
                 
             }
         } catch (SQLException ex) {
@@ -238,11 +227,6 @@ public class BDD {
             while (rs.next()) {
                 uniqueValues.add(rs.getString("pseudo"));
                 uniqueValues.add(rs.getString("email"));
-                System.out.println(rs.getString("utilisateur_id") + "\t"
-                        + rs.getString("prenom") + "\t"
-                        + rs.getString("nom") + "\t"
-                        + rs.getString("email") + "\t"
-                        + rs.getString("pseudo")) ;
                 
             }
         } catch (SQLException ex) {
@@ -319,9 +303,7 @@ public class BDD {
                 // Gère pas encore la couleur a voir !!
                 Categorie categorie = new Categorie( rs.getInt("categorie_id"),rs.getString("nom") );
                 listCategorie.add(categorie);
-                System.out.println(rs.getString("categorie_id") + "\t"
-                        + rs.getString("nom") + "\t"
-                        + rs.getString("couleur")) ;
+
             }
             
             rs.close();
@@ -348,6 +330,39 @@ public class BDD {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
 
             pstmt.setInt(1, CategorieID);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                // Gérer la couleur !!!!!!!
+                //Color color = Color.decode( rs.getString("couleur") );
+                //Color color2 = Color.getColor( rs.getString("couleur") );
+
+                categorie = new Categorie( rs.getInt(1),rs.getString("nom"));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return categorie;
+
+    }
+
+    /**
+     * Find categorie by his/her name
+     *
+     * @param nom
+     */
+    public Categorie get_Categorie(String nom) {
+        Categorie categorie = null;
+        try {
+            String SQL = "SELECT * "
+                    + "FROM " + table("Categorie")
+                    + " WHERE nom = ? ";
+
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+            pstmt.setString(1, nom);
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -482,6 +497,8 @@ public class BDD {
         }
         return ok;
     }
+
+
 
     /**
      * Get Type de transaction in BD
