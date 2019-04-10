@@ -32,7 +32,10 @@ public class BDD {
     private String user = "postgres";       // postgres   user_files (droit uniquement de selection)
     private String password = "123456789";          // 123456789     123
     private Connection conn = null;
-    
+
+    public String getUser(){
+        return this.user;
+    }
     
     public BDD(){
          try {
