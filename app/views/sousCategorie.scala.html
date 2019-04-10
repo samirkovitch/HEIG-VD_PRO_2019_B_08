@@ -4,27 +4,9 @@
  * two arguments, a `String` for the title of the page and an `Html`
  * object to insert into the body of the page.
 
-@(title: String)(content: Html)
-
-@(message: String)
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Categories</title>
-</head>
-<body>
-    <h1>Welcome @message</h1>
-    <p> bonjour les amis , </p>
-
-    <a href="http://localhost:9000" class="button">Go to home</a>
-    <br>
-</body>
-</html>
-
 *@
+
 @import controllers.BDDpackage.SousCategorie
-@import controllers.BDDpackage.Categorie
 
 @(SousCategories: List[SousCategorie])
 
