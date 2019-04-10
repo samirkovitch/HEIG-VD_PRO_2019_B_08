@@ -64,10 +64,26 @@ public class HomeController extends Controller {
     }
     // Exemple pour passer un paramètre de java -> HTML
    public Result sousCategorie() {
+        // Envoie la liste de toute les catégories au HTML
+       ArrayList<Categorie> listCategorie = new ArrayList<Categorie>();
+       listCategorie = DB.display_Categories();
 
-       ArrayList<SousCategorie> listSousCategorie = new ArrayList<SousCategorie>();
-       listSousCategorie = DB.get_Sous_categorie(1);
-
-        return ok( views.html.sousCategorie.render( listSousCategorie) );
+        return ok( views.html.sousCategorie.render( listCategorie) );
     }
+
+    // Permet d'ajouter une sous catégorie
+    public Result addSousCategorie(String nom, int categorie_id) {
+        // Recherche la categorie selectionné
+        Categorie categorieChoisi = DB.CategorieByID(categorie_id);
+        // Cree la sous catégore souhaitée
+        SousCategorie sousCategorie = new SousCategorie(nom, categorieChoisi );
+
+        // Test la valeur de retour !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // Ajout d'une notif 
+        DB.insert_Sous_categorie( sousCategorie);
+
+        // Retour a la page souhaitée (profil)
+        return ok( views.html.utilisateur.render( DB.UtilisateurByID( 1 )) );
+    }
+
 }

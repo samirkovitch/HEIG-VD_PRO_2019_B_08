@@ -6,20 +6,30 @@
 
 *@
 
-@import controllers.BDDpackage.SousCategorie
+@import controllers.BDDpackage.Categorie
 
-@(SousCategories: List[SousCategorie])
+@(listCategories: List[Categorie])
 
 @main("Sous Categorie") {
-    <h1>Welcome SousCategories</h1>
-    <p> nom cat => 2eme paramètre</p>
+    <h1>Add a SousCategories</h1>
 
-    <br>
-    <ul>
-        @for(sousCat <- SousCategories) {
-            <li>@sousCat.nom </li>
-        }
-    </ul>
+    <form action="/AddSousCategorie">
+        Entrez un nom de sous Catégorie :
+        <input type="text" name="nom">
+            <br>
+            Choisire la catégorie principale :
+        <input list="categorie" type="text" name="categorie_id">
+
+            <datalist id="categorie">
+                @for(categorie <- listCategories) {
+                    <option value=@categorie.id>@categorie.nom</option>
+                }
+            </datalist>
+            <br>
+
+        <input type="submit" value="Ajouter">
+    </form>
+
     <br>
     <a href="http://localhost:9000" class="button">Go to home</a>
     <br>
