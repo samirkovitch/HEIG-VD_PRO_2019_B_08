@@ -8,7 +8,7 @@ GET		/test						    controllers.HomeController.test
 GET		/testParam						controllers.HomeController.testParam(name: String)
 GET		/profil					        controllers.HomeController.Profil
 GET		/categorie				        controllers.HomeController.Categorie
-GET		/sousCategorie					controllers.HomeController.sousCategorie
+GET		/sousCategorie					controllers.HomeController.sousCategorie(default: String ?= "")
 GET		/AddSousCategorie				controllers.HomeController.addSousCategorie(nom : String, categorie_id : Int)
 
 # Map static resources from the /public folder to the /assets URL path

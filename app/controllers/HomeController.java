@@ -31,7 +31,7 @@ public class HomeController extends Controller {
         //DB.display_Sous_categorie(2);
 
         //DB.UtilisateurByID(1);
-        return ok(views.html.index.render("Timmy-kun"));
+        return ok(views.html.index.render("Compact Budget"));
     }
 
     public Result test() {
@@ -63,12 +63,12 @@ public class HomeController extends Controller {
         return ok( views.html.Categorie.render( listCategorie) );
     }
     // Exemple pour passer un paramètre de java -> HTML
-   public Result sousCategorie() {
+   public Result sousCategorie(String defaultSelect ) {
         // Envoie la liste de toute les catégories au HTML
        ArrayList<Categorie> listCategorie = new ArrayList<Categorie>();
        listCategorie = DB.display_Categories();
 
-        return ok( views.html.sousCategorie.render( listCategorie) );
+        return ok( views.html.sousCategorie.render( listCategorie, defaultSelect) );
     }
 
     // Permet d'ajouter une sous catégorie

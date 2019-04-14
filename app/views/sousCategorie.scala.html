@@ -8,7 +8,8 @@
 
 @import controllers.BDDpackage.Categorie
 
-@(listCategories: List[Categorie])
+
+@(listCategories: List[Categorie], default: String )
 
 @main("Sous Categorie") {
     <h1>Add a SousCategories</h1>
@@ -18,7 +19,7 @@
         <input type="text" name="nom">
             <br>
             Choisire la catégorie principale :
-        <input list="categorie" type="text" name="categorie_id">
+        <input list="categorie" type="text" name="categorie_id" value="@default">
 
             <datalist id="categorie">
                 @for(categorie <- listCategories) {

@@ -13,8 +13,6 @@
 @(categories: List[Categorie])
 
 @main("Categories") {
-
-
     <br>
     <ul>
         <div class="panel-group">
@@ -28,8 +26,9 @@
                     </h4>
                 </div>
                 <div id=@cat.id class="panel-collapse collapse">
-                    <div class="panel-body">Sous-cat</div>
-                    <div class="panel-footer" ><a href="#" style="color:black">Add categorie</a></div>
+                    <div class="panel-body">Sous-cat </div>
+
+                    <div class="panel-footer" ><a href="http://localhost:9000/sousCategorie?default=@cat.id" style="color:black">Add categorie</a></div>
                 </div>
             </div>
     }
