@@ -1,15 +1,12 @@
 @*
- * This template is called from the `index` template. This template
- * handles the rendering of the page header and body tags. It takes
- * two arguments, a `String` for the title of the page and an `Html`
- * object to insert into the body of the page.
-
+ Permet d'afficher toutes les catégories ainsi que les sous catégories
 *@
 
 
 
 @import controllers.BDDpackage.Categorie
 
+@import controllers.BDDpackage.BDD
 @(categories: List[Categorie])
 
 @main("Categories") {
@@ -26,7 +23,7 @@
                     </h4>
                 </div>
                 <div id=@cat.id class="panel-collapse collapse">
-                    <div class="panel-body">Sous-cat </div>
+                    <div class="panel-body">@views.html.ListsousCategorie.render((HomeController.DB).get_Sous_categorie(cat.id)) </div>
 
                     <div class="panel-footer" ><a href="http://localhost:9000/sousCategorie?default=@cat.id" style="color:black">Add categorie</a></div>
                 </div>

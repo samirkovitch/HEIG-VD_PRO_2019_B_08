@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class HomeController extends Controller {
 
-    BDD DB = new BDD();
+    static public BDD DB = new BDD();
 
     /**
      * An action that renders an HTML page with a welcome message.
@@ -52,7 +52,7 @@ public class HomeController extends Controller {
         // Get user_id
         Utilisateur user = DB.UtilisateurByID( 1 );
 
-        return ok( views.html.utilisateur.render( user) );
+        return ok( views.html.utilisateur.render( user,0,"") );
     }
     // Exemple pour passer un paramètre de java -> HTML
     public Result Categorie() {
@@ -62,7 +62,7 @@ public class HomeController extends Controller {
 
         return ok( views.html.Categorie.render( listCategorie) );
     }
-    // Exemple pour passer un paramètre de java -> HTML
+    // Permet d'ajouter une sous catégorie à la base de donnée
    public Result sousCategorie(String defaultSelect ) {
         // Envoie la liste de toute les catégories au HTML
        ArrayList<Categorie> listCategorie = new ArrayList<Categorie>();
@@ -73,6 +73,10 @@ public class HomeController extends Controller {
 
     // Permet d'ajouter une sous catégorie
     public Result addSousCategorie(String nom, int categorie_id) {
+
+        int alerte = 2;
+        String message = "Success insertion ";
+
         // Recherche la categorie selectionné
         Categorie categorieChoisi = DB.CategorieByID(categorie_id);
         // Cree la sous catégore souhaitée
@@ -80,10 +84,13 @@ public class HomeController extends Controller {
 
         // Test la valeur de retour !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // Ajout d'une notif 
-        DB.insert_Sous_categorie( sousCategorie);
+        if (!DB.insert_Sous_categorie( sousCategorie)){
+            alerte = 1;
+            message = "Error: insertion failed !";
+        }
 
         // Retour a la page souhaitée (profil)
-        return ok( views.html.utilisateur.render( DB.UtilisateurByID( 1 )) );
+        return ok( views.html.utilisateur.render( DB.UtilisateurByID( 1 ),alerte,message) );
     }
 
 }
