@@ -59,9 +59,9 @@ figure {
 
 /********************BOTTON BUTTONS**********************/
 .fa {
-  padding: 20px;
-  font-size: 30px;
-  width: 50px;
+  padding: 15px;
+  font-size: 20px;
+  width: 70 px;
   text-align: center;
   text-decoration: none;
   border-radius: 25%;
@@ -78,7 +78,6 @@ figure {
 /* Facebook */
 .fa-facebook {
   background: #3B5998;
-  
   color: white;
 }
 
