@@ -1,0 +1,24 @@
+Modèle de transaction -> sous catégore (delete set default ) ??????????????
+
+Modèle de transaction -> Type transaction (delete RESTRICT) ???????
+
+Modèle de transaction -> Utilisateur (delete CASCADE) problème ?
+
+Modèle de transaction -> Récurence (delete SET NULL) ?
+
+Transaction -> modele_transaction (delete no action)
+
+Sous_categore -> catégore (delete SET default) ??????
+
+droit_id auto
+
+UNIQUE ??
+
+
+SESSION EN JAVA ????
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
