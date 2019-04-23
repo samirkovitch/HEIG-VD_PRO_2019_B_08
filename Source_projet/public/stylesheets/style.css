@@ -76,6 +76,19 @@ figure {
   opacity: 0.7;
 }
 
+/********************GENERAL USE**********************/
+
+/********************CATEGORIES**********************/
+.div-centered-panel {
+  text-align: left;
+  margin-right: 0px;
+  Margin-left :auto;
+  width: 80%
+}
+/********************CATEGORIES**********************/
+
+
+
 
 /********************BOTTON BUTTONS**********************/
 .fa {
