@@ -92,8 +92,10 @@
 
         <div></div>
         <div class="text-center">
-            <button type="button" class="btn btn-basic minPad buttonTr">Add expense</button>
-            <button type="button" class="btn btn-basic minPad buttonTr">Add income</button>
+            <div class="btn-group minPad" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary">add expense</button>
+                <button type="button" class="btn btn-secondary">add income</button>
+            </div>
             @content
 
         </div>
