@@ -284,7 +284,52 @@ public class BDD {
         }
         return ok;
     }
-    
+
+    /**
+     * Check COnnection and get ID back
+     *
+     * @param String passwd (Mot de passe)
+     * @param String userN (Nom de l'utilisateur)
+     * @throws SQLException
+     */
+    public int checkConnectionGetId(String passwd, String userN){
+
+        // HashMap<String, String> users = new HashMap();
+        // users.put(url, url)
+
+
+        try {
+            //Statement st = conn.createStatement();
+            //ResultSet rs = st.executeQuery("SELECT * FROM " + table("Utilisateur") + " WHERE pseudo = ? AND mdp = ?; );
+            String SQL = "SELECT * "
+                    + "FROM " + table("Utilisateur")
+                    + "WHERE pseudo = ? AND mdp = ?";
+
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+            pstmt.setString(1, userN);
+            pstmt.setString(2, passwd);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if(rs.next())
+            {
+                return rs.getInt("utilisateur_id");
+            }
+            else
+            {
+                return 0;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+
+
+
      /**
      * Display Categorie
      *

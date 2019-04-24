@@ -6,6 +6,12 @@ import controllers.BDDpackage.Categorie;
 import controllers.BDDpackage.SousCategorie;
 import controllers.BDDpackage.Utilisateur;
 import play.mvc.*;
+import play.data.DynamicForm;
+import play.data.Form;
+import play.data.Form.*;
+import play.data.FormFactory;
+import com.google.inject.Inject;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,6 +23,14 @@ import java.util.ArrayList;
 public class HomeController extends Controller {
 
     static public BDD DB = new BDD();
+    Utilisateur user = new Utilisateur();
+
+    private final FormFactory formFactory;
+
+    @Inject
+    public HomeController(FormFactory formFactory) {
+        this.formFactory = formFactory;
+    }
 
     /**
      * An action that renders an HTML page with a welcome message.
@@ -46,13 +60,50 @@ public class HomeController extends Controller {
         return ok(views.html.testParam.render(name));
     }
 
+    // Gestion du login
+    public Result LoginSubmit() {
+
+        DynamicForm form = formFactory.form().bindFromRequest();
+        user = DB.UtilisateurByID( 1 );
+        // dynamicForm.get("username")
+        // dynamicForm.get("password")
+        //boolean test = BCrypt.checkpw(form.get("password"), "$2a$10$ZCd.6iesPjZmQyzHmTub4uHbhLAPdXQzam5aebHE2b2hIHJBeI4TS");
+        int valCo = DB.checkConnectionGetId(BCrypt.hashpw(form.get("password"), BCrypt.gensalt()),form.get("username"));
+        if(valCo != 0)
+        {
+            user = DB.UtilisateurByID( valCo );
+            return ok( views.html.utilisateur.render( user,0,"") );
+        }
+        else
+        {
+            return ok( views.html.Login.render());
+        }
+        //return ok(views.html.index.render(form.get("password")));
+    }
+
+    //Gestion nouvel utilisateur
+    public Result RegisterSubmit(){
+        return ok(views.html.index.render("test"));
+    }
+
+    public Result Register(){
+        return ok(views.html.register.render());
+    }
+
     // Exemple pour passer un paramètre de java -> HTML
     public Result Profil() {
 
         // Get user_id
-        Utilisateur user = DB.UtilisateurByID( 1 );
+        if(user.getId() == 0)
+        {
+            return ok( views.html.Login.render());
+        }
+        else
+        {
+            user = DB.UtilisateurByID( 1 );
+            return ok( views.html.utilisateur.render( user,0,"") );
+        }
 
-        return ok( views.html.utilisateur.render( user,0,"") );
     }
     // Exemple pour passer un paramètre de java -> HTML
     public Result Categorie() {

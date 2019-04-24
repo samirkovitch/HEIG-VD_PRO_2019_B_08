@@ -1,0 +1,12 @@
+
+@main("Login") {
+    <h1>Login</h1>
+
+    @helper.form(action = helper.CSRF(routes.HomeController.LoginSubmit())) {
+        <input type="text" name="username" /><br/>
+        <input type="password" name="password" /><br/>
+
+        <input type="submit" value="Login" />
+    }
+    <button onclick="window.location.href = 'http://localhost:9000/register';">Register</button>
+}

@@ -8,6 +8,7 @@ lazy val myProject = (project in file("."))
 
 scalaVersion := "2.12.8"
 
+libraryDependencies += "org.mindrot" % "jbcrypt" % "0.4"
 libraryDependencies += guice
 libraryDependencies += "junit" % "junit" % "4.12" % "test"
 libraryDependencies += javaJdbc

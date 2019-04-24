@@ -1,0 +1,22 @@
+
+@main("Register") {
+    <h1>Register</h1>
+
+    @helper.form(action = helper.CSRF(routes.HomeController.RegisterSubmit())) {
+        Prénom :
+        <input type="text" name="surname" /><br/>
+        Nom :
+        <input type="text" name="name" /><br/>
+        Email :
+        <input type="email" name="email"/><br/>
+        Pseudo :
+        <input type="text" name="username"/><br/>
+        Mot de passe :
+        <input type="password" name="password" /><br/>
+        Date de naissance :
+        <input type="date" name="anniversaire" /><br/>
+
+
+        <input type="submit" value="register" />
+    }
+}
