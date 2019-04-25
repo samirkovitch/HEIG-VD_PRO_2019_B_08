@@ -1,12 +1,16 @@
+@(error : String)
 
 @main("Login") {
     <h1>Login</h1>
 
     @helper.form(action = helper.CSRF(routes.HomeController.LoginSubmit())) {
+        Pseudo :
         <input type="text" name="username" /><br/>
+        Mot de passe :
         <input type="password" name="password" /><br/>
 
         <input type="submit" value="Login" />
     }
+    <p class="text-danger">@error</p>
     <button onclick="window.location.href = 'http://localhost:9000/register';">Register</button>
 }

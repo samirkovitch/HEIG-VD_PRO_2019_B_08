@@ -1,4 +1,9 @@
+@import controllers.BDDpackage.Pays
+@import controllers.BDDpackage.Statut
 
+@(pays : List[Pays],
+        statut : List[Statut],
+        error : List[String])
 @main("Register") {
     <h1>Register</h1>
 
@@ -13,10 +18,49 @@
         <input type="text" name="username"/><br/>
         Mot de passe :
         <input type="password" name="password" /><br/>
+        Genre :
+        <div class="control">
+            <label class="radio">
+                <input type="radio" checked="checked" value="h" name="genre">
+                Homme
+            </label>
+            <label class="radio">
+                <input type="radio" value="f" name="genre">
+                Femme
+            </label>
+        </div>
         Date de naissance :
         <input type="date" name="anniversaire" /><br/>
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <select name="pays" class="browser-default custom-select">
+                    <option value = "0" selected>Pays</option>
+                    @for(p <- pays) {
+                        <option value ="@p.id">@p.nom</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <select  name="statut" class="browser-default custom-select">
+                    <option value = "0" selected>Statut</option>
+                    @for(s <- statut) {
+                        <option value ="@s.id">@s.nom</option>
+                    }
+                </select>
+            </div>
+        </div>
 
-
+        <input type="checkbox" name="Option" value="2"> Rappel email ?
+        </br></br>
         <input type="submit" value="register" />
     }
+    @if(error != null){
+        @for(s <- error){
+            <p class="text-danger">@s</p>
+        }
+    }
+
+
 }

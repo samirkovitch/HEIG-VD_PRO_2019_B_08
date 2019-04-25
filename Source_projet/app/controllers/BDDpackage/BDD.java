@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.mindrot.jbcrypt.BCrypt;
 
 
 
@@ -95,22 +96,23 @@ public class BDD {
      * @param OptionsID
      */
     private ArrayList<Boolean> optionsString(int OptionsID) {
-        ArrayList<Boolean> options = new ArrayList<>();
+        ArrayList<Boolean> options = new ArrayList<Boolean>();
         
         try {
             String SQL = "SELECT * "
                     + "FROM " + table("Options")
-                    + "WHERE options_id = ?";
+                    + " WHERE options_id = ? ;";
             
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             
             pstmt.setInt(1, OptionsID);
             ResultSet rs = pstmt.executeQuery();
 
-            int i = 1;
+            int i = 2;
 
             while (rs.next()) {
-                options.add( rs.getBoolean(i++) );
+                options.add( rs.getBoolean(i) );
+                i++;
             }
     
         } catch (SQLException ex) {
@@ -195,7 +197,6 @@ public class BDD {
                         statutString(rs.getInt("statut_id")),
                         paysString(rs.getInt("pays_id")),
                         optionsString(rs.getInt("options_id")) );
-
                 
             }
         } catch (SQLException ex) {
@@ -216,9 +217,8 @@ public class BDD {
         // HashMap<String, String> users = new HashMap();
         // users.put(url, url)
         
-        ArrayList<String> uniqueValues = new ArrayList<>(); 
-        
-        
+        ArrayList<String> uniqueValues = new ArrayList<>();
+
         try {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM " + table("Utilisateur") );
@@ -235,7 +235,25 @@ public class BDD {
         
         return uniqueValues;
     }
-    
+
+
+    /**
+     * Permet de gérer l'enregistrement d'un utilisateur
+     *
+     * @params ...
+     * @throws
+     */
+    public int addUser(String prenom, String nom, String email, String pseudo, String mdp,
+                       String genre, String anniversaire,int statut,int Pays,int Option){
+        Boolean genreVal = genre == "h" ? true : false;
+        if(checkUniqueUser(email,pseudo))
+        {
+           return insert_Utilisateurs(prenom,nom,email,pseudo,mdp,genreVal,anniversaire,statut,Pays,Option);
+        }
+        return 0;
+    }
+
+
     /**
      * Permet de verifier la validiter du nouveau utilisateur
      *
@@ -251,16 +269,16 @@ public class BDD {
         
         return true;
     }
-    
+
     /**
      * Permet d'insérer un nouveau utilisateur à la BDD
      *
      * @params ...
      * @throws 
      */
-    private boolean insert_Utilisateurs(String prenom, String nom,String email,String pseudo,String mdp,Boolean genre,String anniversaire,int statut_id, int pays_id, int options_id){
+    private int insert_Utilisateurs(String prenom, String nom,String email,String pseudo,String mdp,Boolean genre,String anniversaire,int statut_id, int pays_id, int options_id){
         int droit_id = 2;
-        boolean ok = false;
+        int ok = 0;
         
         try {
             
@@ -273,11 +291,16 @@ public class BDD {
                     + "(prenom, nom, email, pseudo, mdp, genre, anniversaire, droit_id, statut_id, pays_id, options_id) "
                     + "VALUES "
                     + "('" + prenom +"','"+ nom +"','"+ email +"','"+ pseudo +"','"+ mdp +"',"
-                    + genre.toString() +",'"+ anniversaire +"',"+ droit_id +","+ statut_id +","+ pays_id +","+ options_id + ");";
+                    + genre.toString() +",'"+ anniversaire +"',"+ droit_id +","+ statut_id +","+ pays_id +","+ options_id + ")" +
+                    " RETURNING utilisateur_id;";
             
             Statement st = conn.createStatement();
-            st.executeUpdate(SQL);
-            ok = true;
+            st.executeUpdate(SQL,Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = st.getGeneratedKeys();
+            if (rs.next()){
+                ok = rs.getInt(1);
+            }
+
             
         } catch (SQLException ex) {
             Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
@@ -303,18 +326,22 @@ public class BDD {
             //ResultSet rs = st.executeQuery("SELECT * FROM " + table("Utilisateur") + " WHERE pseudo = ? AND mdp = ?; );
             String SQL = "SELECT * "
                     + "FROM " + table("Utilisateur")
-                    + "WHERE pseudo = ? AND mdp = ?";
+                    + "WHERE pseudo = ?;";
 
             PreparedStatement pstmt = conn.prepareStatement(SQL);
 
             pstmt.setString(1, userN);
-            pstmt.setString(2, passwd);
 
             ResultSet rs = pstmt.executeQuery();
 
             if(rs.next())
             {
-                return rs.getInt("utilisateur_id");
+                //return rs.getInt("utilisateur_id");
+                if(BCrypt.checkpw(passwd, rs.getString("mdp")))
+                {
+                    return rs.getInt("utilisateur_id");
+                }
+                return 0;
             }
             else
             {
@@ -327,8 +354,65 @@ public class BDD {
         return 0;
     }
 
+    /**
+     * Get all Pays
+     *
+     * @param
+     * @throws SQLException
+     */
+    public ArrayList<Pays> get_Pays(){
 
+        ArrayList<Pays> listPays = new ArrayList<Pays>();
 
+        try {
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM " + table("Pays") );
+
+            while (rs.next()) {
+                // Gère pas encore la couleur a voir !!
+                Pays pays = new Pays( rs.getInt("pays_id"),rs.getString("nom") );
+                listPays.add(pays);
+
+            }
+
+            rs.close();
+            st.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listPays;
+    }
+
+    /**
+     * Get all Pays
+     *
+     * @param
+     * @throws SQLException
+     */
+    public ArrayList<Statut> get_Statut(){
+
+        ArrayList<Statut> listStatut = new ArrayList<Statut>();
+
+        try {
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM " + table("Statut") );
+
+            while (rs.next()) {
+                // Gère pas encore la couleur a voir !!
+                Statut statut = new Statut( rs.getInt("statut_id"),rs.getString("nom") );
+                listStatut.add(statut);
+
+            }
+
+            rs.close();
+            st.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listStatut;
+    }
 
      /**
      * Display Categorie
@@ -425,7 +509,6 @@ public class BDD {
         return categorie;
 
     }
-
 
     /**
      * Get Sous_categorie by
@@ -543,8 +626,6 @@ public class BDD {
         return ok;
     }
 
-
-
     /**
      * Get Type de transaction in BD
      *
@@ -593,7 +674,7 @@ public class BDD {
         app.UtilisateurByID(3);
         
         System.out.println("------------------Insert Utilisateurs ------------------------------------------------");
-        if (!app.insert_Utilisateurs( "prenom1",  "nom2", "email2", "pseudo1", "mdp_evadvservsrevervrev_vdfvdfvdF_vfdvdf_lol", true, "1950-03-11", 2,  23,  1))
+        if (app.insert_Utilisateurs( "prenom1",  "nom2", "email2", "pseudo1", "mdp_evadvservsrevervrev_vdfvdfvdF_vfdvdf_lol", true, "1950-03-11", 2,  23,  1) == 0)
             System.out.println("erreur !");
         
         System.out.println("------------------Insert Sous_categorie------------------------------------------------");
