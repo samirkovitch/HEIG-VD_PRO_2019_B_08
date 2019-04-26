@@ -239,4 +239,39 @@ public class HomeController extends Controller {
         return ok( views.html.utilisateur.render( DB.UtilisateurByID( 1 ),alerte,message) );
     }
 
+    // Gestion des options
+    public Result ModifOptions()
+    {
+        if(user.getId() == 0)
+        {
+            return redirect("/profil");
+        }
+        else
+        {
+            return ok(views.html.options.render(user.getOptions()));
+        }
+    }
+
+    public Result ModifOptionsSub(String Option)
+    {
+        //return ok(views.html.index.render(Option));
+        if(user.getId() == 0)
+        {
+            return ok(views.html.index.render("Compact Budget"));
+        }
+        else
+        {
+            boolean ret = DB.updateOptionUser(user.getId(), Integer.parseInt(Option));
+            if(ret)
+            {
+                int valco = user.getId();
+                user = DB.UtilisateurByID(valco);
+                return redirect("/profil");
+            }
+            else
+            {
+               return redirect("/options");
+            }
+        }
+    }
 }

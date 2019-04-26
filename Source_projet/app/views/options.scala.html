@@ -1,0 +1,15 @@
+@import controllers.BDDpackage.Utilisateur
+
+@(options : List[Boolean])
+@main("Options"){
+
+    <h1>Options</h1>
+    <form action="/modifoptions" method="get">
+        <input type="checkbox" name="Option" value="2"> Rappel email ?
+        <input type="hidden" name="Option" value="1" />
+        <input type="submit" value="Submit">
+    </form>
+
+
+
+}
