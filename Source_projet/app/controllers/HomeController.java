@@ -254,14 +254,24 @@ public class HomeController extends Controller {
 
     public Result ModifOptionsSub(String Option)
     {
+        //return ok(views.html.index.render(Option));
         if(user.getId() == 0)
         {
             return ok(views.html.index.render("Compact Budget"));
         }
         else
         {
-            return ok(views.html.index.render("Compact Budget"));
+            boolean ret = DB.updateOptionUser(user.getId(), Integer.parseInt(Option));
+            if(ret)
+            {
+                int valco = user.getId();
+                user = DB.UtilisateurByID(valco);
+                return redirect("/profil");
+            }
+            else
+            {
+               return redirect("/options");
+            }
         }
-
     }
 }
