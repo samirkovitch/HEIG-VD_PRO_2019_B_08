@@ -30,8 +30,8 @@ public class Utilisateur {
     public String pays;
     public ArrayList<Boolean> options;
 
-    Utilisateur() {
-
+    public Utilisateur() {
+        this.id = 0;
     }
 
     public Utilisateur(int id, String prenom, String nom, String email, String pseudo, String genre, String anniversaire, String cree_a, String droit, String statut, String pays, ArrayList<Boolean> options) {
@@ -47,5 +47,10 @@ public class Utilisateur {
         this.statut = statut;
         this.pays = pays;
         this.options = options;
+    }
+
+    public int getId()
+    {
+        return this.id;
     }
 }
