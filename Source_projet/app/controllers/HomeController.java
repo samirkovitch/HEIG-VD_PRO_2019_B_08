@@ -114,7 +114,7 @@ public class HomeController extends Controller {
         }
         if(form.get("username").length() == 0)
         {
-            messageError.add("Erreur, veuillez entrer un pseudo\n");
+            messageError.add("Erreur, veuillez entrer un username\n");
             error = true;
         }
         if(form.get("email").length() == 0)
@@ -149,7 +149,7 @@ public class HomeController extends Controller {
         }
         else if(!error)
         {
-            messageError.add("Erreur, veuillez choisir un autre pseudo ou un autre email\n");
+            messageError.add("Erreur, veuillez choisir un autre username ou un autre email\n");
         }
         //Recuperation pays pour affichage
         ArrayList<Pays> pays = new ArrayList<Pays>();
