@@ -89,7 +89,8 @@ public class BDD {
         return pays;
         
     }
-    
+
+
     /**
      * Permet de convertir l'id des options en string
      *
@@ -245,7 +246,7 @@ public class BDD {
      */
     public int addUser(String prenom, String nom, String email, String pseudo, String mdp,
                        String genre, String anniversaire,int statut,int Pays,int Option){
-        Boolean genreVal = genre == "h" ? true : false;
+        Boolean genreVal = Integer.parseInt(genre) == 1 ? true : false;
         if(checkUniqueUser(email,pseudo))
         {
            return insert_Utilisateurs(prenom,nom,email,pseudo,mdp,genreVal,anniversaire,statut,Pays,Option);
