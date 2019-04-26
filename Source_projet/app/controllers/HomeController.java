@@ -14,6 +14,7 @@ import play.data.Form.*;
 import play.data.FormFactory;
 import com.google.inject.Inject;
 import org.mindrot.jbcrypt.BCrypt;
+import java.util.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -157,7 +158,6 @@ public class HomeController extends Controller {
         //Recuperation statut pour affichage
         ArrayList<Statut> statut = new ArrayList<Statut>();
         statut = DB.get_Statut();
-
         return ok(views.html.register.render(pays,statut,messageError));
 
     }
