@@ -14,6 +14,8 @@ GET		/AddSousCategorie				controllers.HomeController.addSousCategorie(nom : Stri
 POST    /login                         controllers.HomeController.LoginSubmit
 POST    /register                      controllers.HomeController.RegisterSubmit
 GET     /register                      controllers.HomeController.Register
+GET     /options                       controllers.HomeController.ModifOptions
+GET     /modifoptions                  controllers.HomeController.ModifOptionsSub(Option : String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

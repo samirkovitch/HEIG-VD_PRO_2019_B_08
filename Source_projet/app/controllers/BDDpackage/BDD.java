@@ -89,7 +89,8 @@ public class BDD {
         return pays;
         
     }
-    
+
+
     /**
      * Permet de convertir l'id des options en string
      *
@@ -122,7 +123,27 @@ public class BDD {
         return options;
         
     }
-    
+
+    public boolean updateOptionUser(int userId, int OptionId)
+    {
+        try {
+            String sql = "UPDATE " + table("Utilisateur") + " set options_id=? where utilisateur_id=? ; ";
+
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            pstmt.setInt(1, OptionId);
+            pstmt.setInt(2,userId);
+
+            int count = pstmt.executeUpdate();
+            return (count > 0);
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
     /**
      * Permet de convertir le boolean du genre en String
      *
@@ -245,7 +266,7 @@ public class BDD {
      */
     public int addUser(String prenom, String nom, String email, String pseudo, String mdp,
                        String genre, String anniversaire,int statut,int Pays,int Option){
-        Boolean genreVal = genre == "h" ? true : false;
+        Boolean genreVal = Integer.parseInt(genre) == 1 ? true : false;
         if(checkUniqueUser(email,pseudo))
         {
            return insert_Utilisateurs(prenom,nom,email,pseudo,mdp,genreVal,anniversaire,statut,Pays,Option);

@@ -53,4 +53,8 @@ public class Utilisateur {
     {
         return this.id;
     }
+
+    public ArrayList<Boolean> getOptions() {
+        return options;
+    }
 }
