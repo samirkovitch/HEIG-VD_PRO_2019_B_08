@@ -730,7 +730,17 @@ public class BDD {
         return sommes;
     }
 
-    public int addIncome(int userID, int valeur, String sousCategorie, String Categorie, String recurrence, String note){
+    /**
+     * Permet d'ajouter un revenu
+     *
+     * @param userID            ID de l'utilisateur
+     * @param valeur            valeur du revenu
+     * @param sousCategorie     sous categorie
+     * @param recurrence        recurrence du payement
+     * @param note              note de l'utilisateur concernant le payement
+     * @return                  retoure 0 s'il n'y a pas eu de probleme, -1 autrement
+     */
+    public int addIncome(int userID, int valeur, String sousCategorie, String recurrence, String note){
         String SQL = "INSERT INTO " + table("Modele_transaction") + "(valeur, date, note, utilisateur_id, sous_categorie_id, type_transaction_id, recurrence_id) " +
                         "VALUES (?, NOW(),?, ?, ?, ?, ?)";
 
@@ -758,6 +768,42 @@ public class BDD {
         }
     }
 
+    /**
+     * Permet d'ajouter une depense
+     *
+     * @param userID            ID de l'utilisateur
+     * @param valeur            valeur de le depense
+     * @param sousCategorie     sous categorie
+     * @param recurrence        recurrence du payement
+     * @param note              note de l'utilisateur concernant le payement
+     * @return                  retoure 0 s'il n'y a pas eu de probleme, -1 autrement
+     */
+    public int addExpense(int userID, int valeur, String sousCategorie, String recurrence, String note){
+        String SQL = "INSERT INTO " + table("Modele_transaction") + "(valeur, date, note, utilisateur_id, sous_categorie_id, type_transaction_id, recurrence_id) " +
+                "VALUES (?, NOW(),?, ?, ?, ?, ?)";
+
+        try{
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+            pstmt.setInt(1, valeur);
+            pstmt.setString(2, note);
+            pstmt.setInt(3, userID);
+            pstmt.setInt(4, getSousCategorieID(sousCategorie));
+            pstmt.setInt(5, 1);
+            if(recurrence == null){
+                pstmt.setNull(6, Types.INTEGER);
+            }else{
+                pstmt.setInt(6, Recurrence.getIdByName(recurrence));
+            }
+
+            pstmt.executeUpdate();
+            return 0;
+        }
+        catch(SQLException ex){
+            Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
+        }
+    }
     /*public ArrayList<Integer> getTenLastSousCategorie(int userID, int sousCatID) {
         String SQL = "SELECT SUM(Transaction.valeur) as Somme FROM " + table("Utilisateur") +
                 "INNER JOIN " + table("Modele_transaction") + "ON Modele_transaction.utilisateur_id = Utilisateur.id " +
