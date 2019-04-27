@@ -42,12 +42,43 @@
                             <div class="desc">Birthday : @user.anniversaire</div>
                             <div class="desc">Status : @user.statut</div>
                             <div class="desc">Inscription date : @user.cree_a</div>
-                            <div class="desc"><a href="http://localhost:9000/modifierProfil"> Modify</a></div>
+                            <div class="desc"><a href="http://localhost:9000/modifierProfil">Modify</a></div>
                         </div>
                         <hr class="style1">
                         <div class="div-centered-panel">
                             <h6>Settings</h6>
-                            <div class="desc">Email notifications : @user.options <a href="http://localhost:9000/options"> Modify</a> </div>
+                            <div class="desc">Email notifications : @user.options</div>
+                            <div class="desc">
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#basicExampleModal">
+                                    Modify
+                                </button>
+
+                                    <!-- Modal -->
+                                <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Options</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="/modifoptions" method="get">
+                                                <div class="modal-body">
+                                                    <input type="checkbox" name="Option" value="2"> Rappel email ?
+                                                    <input type="hidden" name="Option" value="1" />
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" value="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="desc"><a href="http://localhost:9000/deco" class="button">Disconnect</a></div>
                         </div>
                     </div>
