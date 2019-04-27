@@ -706,7 +706,7 @@ public class BDD {
         String SQL = "SELECT SUM(Transaction.valeur) as Somme FROM " + table("Utilisateur") +
                 "INNER JOIN " + table("Modele_transaction") + "ON Modele_transaction.utilisateur_id = Utilisateur.id " +
                 "INNER JOIN " + table("Transaction") + "ON Modele_transaction.modele_transaction_id = Transaction.modele_transaction_id " +
-                "WHERE Utilisateur.id = ? AND Modele_transaction.sous_categorie_id = ? " + "GROUP BY MONTH(Transaction.date)";
+                "WHERE Utilisateur.id = ? AND Modele_transaction.sous_categorie_id = ? " + "GROUP BY MONTH(Transaction.date);";
 
         ArrayList<Integer> sommes = new ArrayList<>();
 
@@ -742,7 +742,7 @@ public class BDD {
      */
     public int addIncome(int userID, int valeur, String sousCategorie, String recurrence, String note){
         String SQL = "INSERT INTO " + table("Modele_transaction") + "(valeur, date, note, utilisateur_id, sous_categorie_id, type_transaction_id, recurrence_id) " +
-                        "VALUES (?, NOW(),?, ?, ?, ?, ?)";
+                        "VALUES (?, NOW(),?, ?, ?, ?, ?);";
 
         try{
             PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -780,7 +780,7 @@ public class BDD {
      */
     public int addExpense(int userID, int valeur, String sousCategorie, String recurrence, String note){
         String SQL = "INSERT INTO " + table("Modele_transaction") + "(valeur, date, note, utilisateur_id, sous_categorie_id, type_transaction_id, recurrence_id) " +
-                "VALUES (?, NOW(),?, ?, ?, ?, ?)";
+                "VALUES (?, NOW(),?, ?, ?, ?, ?);";
 
         try{
             PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -804,22 +804,21 @@ public class BDD {
             return -1;
         }
     }
-    /*public ArrayList<Integer> getTenLastSousCategorie(int userID, int sousCatID) {
-        String SQL = "SELECT SUM(Transaction.valeur) as Somme FROM " + table("Utilisateur") +
-                "INNER JOIN " + table("Modele_transaction") + "ON Modele_transaction.utilisateur_id = Utilisateur.id " +
-                "INNER JOIN " + table("Transaction") + "ON Modele_transaction.modele_transaction_id = Transaction.modele_transaction_id " +
-                "WHERE Utilisateur.id = ? AND Modele_transaction.sous_categorie_id = ? " + "GROUP BY MONTH(Transaction.date)";
+    public ArrayList<Integer> getTenLastSousCategorie(int userID, int sousCatID) {
+        String SQL = "SELECT Transaction.valeur as Somme FROM " + table("Modele_transaction")
+                        + " INNER JOIN " + table("Transaction") + " ON Modele_transaction.modele_transaction_id = Transaction.modele_transaction_id"
+                        + " WHERE Modele_transaction.utilisateur_id = ? AND Modele_transaction.sous_categorie_id = ?"
+                        + " ORDER BY Transaction.date DESC LIMIT 10;";
 
         ArrayList<Integer> sommes = new ArrayList<>();
 
         try{
             PreparedStatement pstmt = conn.prepareStatement(SQL);
 
-            pstmt.setInt(2, sousCatID);
             pstmt.setInt(1, userID);
+            pstmt.setInt(2, sousCatID);
 
             ResultSet rs = pstmt.executeQuery();
-
 
             while (rs.next()) {
                 sommes.add(rs.getInt(1));
@@ -830,7 +829,7 @@ public class BDD {
             Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return sommes;
-    }*/
+    }
     /**
      * @param args the command line arguments
      */
