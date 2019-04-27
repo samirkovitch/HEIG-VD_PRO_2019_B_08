@@ -55,14 +55,13 @@
                 /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
                 function openNav() {
                     document.getElementById("mySidenav").style.width = "50%";
-                    document.body.style.backgroundColor = "rgba(0,0,0,0.5)";
+                    document.getElementById("mySidenav").style.boxShadow = "0 0 0 10000px rgba(0,0,0,.50)";
                 }
 
                 /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
                 function closeNav() {
                     document.getElementById("mySidenav").style.width = "0";
-                    document.getElementById("main").style.marginLeft = "0";
-                    document.body.style.backgroundColor = "white";
+                    document.getElementById("mySidenav").style.boxShadow = "0 0 0 10000px rgba(0,0,0,0)";
                 }
         </script>
 
@@ -107,10 +106,8 @@
             </div>
         </div>
 
-        <div id="main">
-
+        <div id="main" style="z-index:0">
         <!-- Navigation -->
-            <!-- Le md dit en gros que ça sera visible que sur les petits écrans (voir les comm dans style.css) -->
         <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
                 <!-- container-fluid permet de prendre 100% de la page -->
             <div class ="container-fluid">
@@ -143,93 +140,57 @@
                         </li>
                     </ul>
                 </div>
-
             </div>
         </nav>
 
         <div class="text-center">
-            <div class="btn-group minPad" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-secondary">add expense</button>
-                <button type="button" class="btn btn-secondary">add income</button>
-            </div>
             @content
-
         </div>
 
-        @* And here's where we render the `Html` object containing
-        * the page content. *@
-
-
-
             <!-- Footer -->
-        <footer class="page-footer font-small blue pt-4">
-
-                <!-- Footer Links -->
-            <div class="container-fluid text-center text-md-left">
-
-
-
-                    <!-- Grid row -->
-                <div class="row">
-
-                        <!-- Grid column -->
-                    <div class="col-md-6 mt-md-0 mt-3">
-
-                        <div class="container">
-                            <div id="carouselContent" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner" role="listbox">
-                                    <div class="carousel-item active text-center p-4">
-                                        <p>You can have a coach's help at any moment</p>
+            <footer class="page-footer font-small blue pt-4">
+                    <!-- Footer Links -->
+                <div class="container-fluid text-center text-md-left">
+                        <!-- Grid row -->
+                    <div class="row">
+                            <!-- Grid column -->
+                        <div class="col-md-6 mt-md-0 mt-3">
+                            <div class="container">
+                                <div id="carouselContent" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="carousel-item active text-center p-4">
+                                            <p>You can have a coach's help at any moment</p>
+                                        </div>
+                                        <div class="carousel-item text-center p-4">
+                                            <p>Add a categorie at any moment to customize the manager</p>
+                                        </div>
                                     </div>
-                                    <div class="carousel-item text-center p-4">
-
-                                        <p>Add a categorie at any moment to customize the manager</p>
-                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselContent" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselContent" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
                                 </div>
-                                <a class="carousel-control-prev" href="#carouselContent" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselContent" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
                             </div>
                         </div>
-
+                            <!-- Grid column -->
+                        <hr class="clearfix w-100 d-md-none pb-3">
+                            <!-- Grid column -->
+                        <div class="col-md-3 mb-md-0 mb-3">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="https://www.facebook.com/Compact-Budget-2397370796940679/?modal=admin_todo_tour" target="_blank" class="fa fa-facebook"></a>
+                                    <a href="https://twitter.com/BudgetCompact" target="_blank" class="fa fa-twitter"></a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-
-                        <!-- Grid column -->
-                    <hr class="clearfix w-100 d-md-none pb-3">
-
-
-                        <!-- Grid column -->
-                    <div class="col-md-3 mb-md-0 mb-3">
-
-                            <!-- Links -->
-
-                        <ul class="list-unstyled">
-                            <li>
-                                <a href="https://www.facebook.com/Compact-Budget-2397370796940679/?modal=admin_todo_tour" target="_blank" class="fa fa-facebook"></a>
-                                <a href="https://twitter.com/BudgetCompact" target="_blank" class="fa fa-twitter"></a>
-                            </li>
-                        </ul>
-
-                    </div>
-                        <!-- Grid column -->
-
-
-                        <!-- Grid row -->
-
                 </div>
-                    <!-- Footer Links -->
-
-
-
-        </footer>
+            </footer>
         </div>
-            <!-- Footer -->
-
             <!-- <script src="@routes.Assets.versioned("javascripts/main.js")" type="text/javascript"></script>-->
     </body>
 </html>
