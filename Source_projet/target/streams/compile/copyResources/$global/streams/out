@@ -1,0 +1,4 @@
+[debug] Copy resource mappings: 
+[debug] 	(P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\conf\application.conf,P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\target\scala-2.12\classes\application.conf)
+[debug] 	(P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\conf\logback.xml,P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\target\scala-2.12\classes\logback.xml)
+[debug] 	(P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\conf\routes,P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\target\scala-2.12\classes\routes)

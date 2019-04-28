@@ -1,0 +1,3 @@
+[error] [Error] D:\TIC\HEIG\S4\PRO\pro_play_java\app\views\Categorie.scala.html:29
+[error]                     <div class="panel-body">Sous-cat  @ { controllers.HomeController.test}  </div>: Expected '}' but found '@'
+[error] (Compile / twirlCompileTemplates) Twirl compilation failed

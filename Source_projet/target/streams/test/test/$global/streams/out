@@ -1,0 +1,30 @@
+[debug] javaOptions: Vector()
+[debug] Forking tests - parallelism = false
+[debug] Create a single-thread test executor
+[debug] Runner for com.novocode.junit.JUnitFramework produced 3 initial tasks for 3 tests.
+[debug]   Running TaskDef(HomeControllerTest, sbt.ForkMain$AnnotatedFingerscan@7daedb9, false, [SuiteSelector])
+[debug] Test run started
+[debug] Test HomeControllerTest.firstTest started
+[debug] Test HomeControllerTest.firstTest finished, took 0.004 sec
+[debug] Test run finished: 0 failed, 0 ignored, 1 total, 0.013s
+[debug]     Produced 0 nested tasks and 1 events.
+[debug]   Running TaskDef(BDDTest, sbt.ForkMain$AnnotatedFingerscan@295d7143, false, [SuiteSelector])
+[debug] Test run started
+[debug] Test BDDTest.firstTest started
+[debug] Test BDDTest.firstTest finished, took 0.624 sec
+[debug] Test run finished: 0 failed, 0 ignored, 1 total, 0.625s
+[debug]     Produced 0 nested tasks and 1 events.
+[debug]   Running TaskDef(CategorieTest, sbt.ForkMain$AnnotatedFingerscan@5b0498c, false, [SuiteSelector])
+[debug] Test run started
+[debug] Test CategorieTest.creeCategorieAvecCouleur started
+[debug] Test CategorieTest.creeCategorieAvecCouleur finished, took 0.066 sec
+[debug] Test CategorieTest.creeCategorieSansCouleur started
+[debug] Test CategorieTest.creeCategorieSansCouleur finished, took 0.001 sec
+[debug] Test run finished: 0 failed, 0 ignored, 2 total, 0.069s
+[debug]     Produced 0 nested tasks and 2 events.
+[debug] Summary for JUnit not available.
+[info] Passed: Total 4, Failed 0, Errors 0, Passed 4
+[debug] Passed tests:
+[debug] 	CategorieTest
+[debug] 	HomeControllerTest
+[debug] 	BDDTest

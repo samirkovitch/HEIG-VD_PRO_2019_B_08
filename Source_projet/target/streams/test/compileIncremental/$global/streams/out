@@ -1,0 +1,29 @@
+[debug] Invalidating D:\TIC\HEIG\S4\PRO\pro_play_java\target\scala-2.12\classes\controllers\BDDpackage\BDD.class: stamp changed from lastModified(1554913733983) to lastModified(1554930772521)
+[debug] 
+[debug] Initial source changes: 
+[debug] 	removed:Set()
+[debug] 	added: Set()
+[debug] 	modified: Set(D:\TIC\HEIG\S4\PRO\pro_play_java\test\controllers\BDDpackageTest\BDDTest.java)
+[debug] Invalidated products: Set()
+[debug] External API changes: API Changes: Set()
+[debug] Modified binary dependencies: Set(D:\TIC\HEIG\S4\PRO\pro_play_java\target\scala-2.12\classes\controllers\BDDpackage\BDD.class)
+[debug] Initial directly invalidated classes: Set(BDDTest)
+[debug] 
+[debug] Sources indirectly invalidated by:
+[debug] 	product: Set()
+[debug] 	binary dep: Set(D:\TIC\HEIG\S4\PRO\pro_play_java\test\controllers\BDDpackageTest\BDDTest.java)
+[debug] 	external source: Set()
+[debug] All initially invalidated classes: Set(BDDTest)
+[debug] All initially invalidated sources:Set(D:\TIC\HEIG\S4\PRO\pro_play_java\test\controllers\BDDpackageTest\BDDTest.java)
+[info] Compiling 1 Java source to D:\TIC\HEIG\S4\PRO\pro_play_java\target\scala-2.12\test-classes ...
+[debug] Attempting to call com.sun.tools.javac.api.JavacTool@4c8c145c directly...
+[debug] Java compilation took 1.562413565 s
+[debug] Java analysis took 0.123302061 s
+[debug] Java compilation + analysis took 1.700870753 s
+[info] Done compiling.
+[debug] New invalidations:
+[debug] 	Set()
+[debug] Initial set of included nodes: Set()
+[debug] Previously invalidated, but (transitively) depend on new invalidations:
+[debug] 	Set()
+[debug] All newly invalidated classes after taking into account (previously) recompiled classes:Set()
