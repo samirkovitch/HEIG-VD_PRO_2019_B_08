@@ -1,11 +1,9 @@
 [debug] Acquiring lock on file P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\project\target\.sbt-compilation-infos\myProject-compile\.sbt-idea-lock ...
-[warn] P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\app\views\Categorie.scala.html:7:32: imported `Categorie' is permanently hidden by definition of object Categorie in package html
-[warn] @import controllers.BDDpackage.Categorie
-[warn]                                ^
-[warn] P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\app\views\sousCategorie.scala.html:6:32: imported `Categorie' is permanently hidden by definition of object Categorie in package html
-[warn] @import controllers.BDDpackage.Categorie
-[warn]                                ^
+[warn] P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\app\views\Categorie.scala.html:9:8: imported `Categorie' is permanently hidden by definition of object Categorie in package html
+[warn] @import controllers.BDDpackage.BDD
+[warn]        ^
+[warn] P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\app\views\sousCategorie.scala.html:9:9: imported `Categorie' is permanently hidden by definition of object Categorie in package html
+[warn] @(listCategories: List[Categorie], default: String )
+[warn]         ^
 [warn] two warnings found
-[error] P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\app\controllers\BDDpackage\BDD.java:870:1: incompatible types: java.util.ArrayList<java.lang.Integer> cannot be converted to int
-[error]         return sommes;
 [debug] Releasing lock on file P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\project\target\.sbt-compilation-infos\myProject-compile\.sbt-idea-lock.

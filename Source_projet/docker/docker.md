@@ -14,7 +14,7 @@ docker run -p 5432:5432 --name test -e POSTGRES_PASSWORD=123456789 -d --volumes-
 
     Il faut aussi modifier l'URL du fichier conf/application.conf ```db.default.url="jdbc:postgresql://0.0.0.0/BD_Budget"```
 
-2. Taper dist dans la console SBT sur Intellij
+2. Taper ```dist``` dans la console SBT sur Intellij
 
     Ceci permet de créer un ```SNAPSHOT.zip``` dans ```target/universal/```
 

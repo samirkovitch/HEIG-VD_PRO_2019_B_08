@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:P:/Users/Simon/Documents/PRO/HEIG-VD_PRO_2019_B_08/Source_projet/conf/routes
-// @DATE:Sun Apr 28 13:00:26 CEST 2019
+// @DATE:Sun Apr 28 13:56:11 CEST 2019
 
 import play.api.routing.JavaScriptReverseRoute
 

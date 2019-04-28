@@ -1,0 +1,31 @@
+[info] Packaging P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\target\scala-2.12\pro_play_java_2.12-1.0-SNAPSHOT-sources.jar ...
+[debug] Input file mappings:
+[debug] 	controllers\BDDpackage\Utilisateur.java
+[debug] 	  P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\app\controllers\BDDpackage\Utilisateur.java
+[debug] 	controllers\BDDpackage\BDD.java
+[debug] 	  P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\app\controllers\BDDpackage\BDD.java
+[debug] 	controllers\BDDpackage\Statut.java
+[debug] 	  P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\app\controllers\BDDpackage\Statut.java
+[debug] 	controllers\BDDpackage\Pays.java
+[debug] 	  P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\app\controllers\BDDpackage\Pays.java
+[debug] 	application.conf
+[debug] 	  P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\conf\application.conf
+[debug] 	controllers\BDDpackage\Limite.java
+[debug] 	  P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\app\controllers\BDDpackage\Limite.java
+[debug] 	controllers\BDDpackage\Modele_transaction.java
+[debug] 	  P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\app\controllers\BDDpackage\Modele_transaction.java
+[debug] 	controllers\BDDpackage\Transaction.java
+[debug] 	  P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\app\controllers\BDDpackage\Transaction.java
+[debug] 	controllers\HomeController.java
+[debug] 	  P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\app\controllers\HomeController.java
+[debug] 	logback.xml
+[debug] 	  P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\conf\logback.xml
+[debug] 	controllers\BDDpackage\SousCategorie.java
+[debug] 	  P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\app\controllers\BDDpackage\SousCategorie.java
+[debug] 	controllers\BDDpackage\Recurrence.java
+[debug] 	  P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\app\controllers\BDDpackage\Recurrence.java
+[debug] 	routes
+[debug] 	  P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\conf\routes
+[debug] 	controllers\BDDpackage\Categorie.java
+[debug] 	  P:\Users\Simon\Documents\PRO\HEIG-VD_PRO_2019_B_08\Source_projet\app\controllers\BDDpackage\Categorie.java
+[info] Done packaging.
