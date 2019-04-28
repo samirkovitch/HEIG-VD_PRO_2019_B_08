@@ -21,4 +21,4 @@ RUN \
 COPY files /svc
 RUN sbt update
 EXPOSE 9000
-CMD /svc/bin/start
+CMD /svc/bin/start -Dplay.http.secret.key='QCY?tAnfk?aZ?iwrNwnxIlR6CTf:G3gf:90Latabg@5241AB`R5W:1uDFN];Ik@n'

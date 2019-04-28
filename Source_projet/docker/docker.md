@@ -1,18 +1,12 @@
 # Docker - PRO
 
-## BDD - pas besoin au final
-
-docker create -v /var/lib/postgresql/data --name PostgresData alpine
-
-docker run -p 5432:5432 --name test -e POSTGRES_PASSWORD=123456789 -d --volumes-from PostgresData postgres
-
 ## Application
 
 1. Modification des fichiers (à définir)
 
-    Il faut modifier l'URL du fichier app\controllers\BDDpackage\BDD.java par ```jdbc:postgresql://0.0.0.0:5432/BD_Budget``` au lieu de ```jdbc:postgresql://127.0.0.1:5432/BD_Budget``` 
+    Il faut modifier l'URL du fichier app\controllers\BDDpackage\BDD.java par ```private String url = jdbc:postgresql://postgres/BD_Budget``` 
 
-    Il faut aussi modifier l'URL du fichier conf/application.conf ```db.default.url="jdbc:postgresql://0.0.0.0/BD_Budget"```
+    Il faut aussi modifier l'URL du fichier conf/application.conf ```db.default.url="jdbc:postgresql://postgres/BD_Budget"```
 
 2. Taper ```dist``` dans la console SBT sur Intellij
 
@@ -20,7 +14,9 @@ docker run -p 5432:5432 --name test -e POSTGRES_PASSWORD=123456789 -d --volumes-
 
 3. Préparation pour le déployement
 
-    Ces commandes doivent être taper dans le dossier Source_projet. Supprimer tous les fichiers qui se trouvent dans docker/app/files
+    Ces commandes doivent être tapée dans le dossier Source_projet. 
+    
+    ATTENTION: supprimez tous les fichiers qui se trouvent dans docker/app/files
 
     ```
     unzip -d docker/app/files target/universal/*-1.0-SNAPSHOT.zip
@@ -29,11 +25,13 @@ docker run -p 5432:5432 --name test -e POSTGRES_PASSWORD=123456789 -d --volumes-
     mv docker/app/files/bin/* docker/app/files/bin/start
     ```
     
-    Elles permettent de préparer les fichiers du site pour docker
+    Elles permettent de préparer les fichiers de l'application pour docker.
 
 4. Lancement de l'application
 
-    Ouvrir docker dans le répertoire ```docker/app/``` et taper la commande ```docker-compose up```. Cette commande va appeler le fichier docker-compose.yml ainsi que Dockerfile.
+    Ouvrir docker dans le répertoire ```docker/app/``` et taper la commande ```docker-compose up```. Cette commande va appeler le fichier docker-compose.yml ainsi que Dockerfile. L'application va tourner en production sous docker.
+    
+Si on veut modifier des fichiers ou éteindre et relancer l'application, il faut supprimer les 2 containers pgsql_PRO et app_web_1 ainsi que leur image respective. 
 
 ## Sources
 
